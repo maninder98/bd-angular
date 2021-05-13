@@ -1,14 +1,17 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
-
 import {AppComponent} from './app.component';
-
+import {FormsModule} from '@angular/forms';
+import {ContactFormComponent} from './contact-form/contact-form.component';
+import {NgModule} from "@angular/core";
+import {ContactNamePipe} from "./pipes/contact-name.pipe";
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ContactFormComponent,
+    ContactNamePipe
   ],
   imports: [
-    BrowserModule
+    BrowserModule, FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
