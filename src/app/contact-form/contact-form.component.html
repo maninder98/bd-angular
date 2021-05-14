@@ -1,15 +1,76 @@
 <h2>Datepicker: Contacts</h2>
-<div class="myform">
+<div class="flex">
   <form (ngSubmit)="addContact()" #myform="ngForm">
-    <label for="inputFirstName">Firstname:</label>
-    <input type="text" [(ngModel)]="newContact.firstName" name="firstName" id="inputFirstName" class="form-control">
-    <label for="inputSurname">Surname:</label>
-    <input type="text" [(ngModel)]="newContact.surname" name="surname" id="inputSurname" class="form-control">
-    <label for="inputEmail">E-mail address:</label>
-    <input type="text" [(ngModel)]="newContact.email" name="email" id="inputEmail" class="form-control"
-           required #myemail="ngModel"> <span *ngIf="myemail.invalid"></span>
+    <h2>Template-driven form (FormsModule)</h2>
+    <div>
+      <label for="inputFirstName">Firstname:</label>
+      <input type="text" [(ngModel)]="newContact.firstName" name="firstName" id="inputFirstName"
+             required pattern="[a-zA-Z]*" #firstName="ngModel" class="form-control">
+      <span *ngIf="firstName.touched && firstName.invalid">*</span>
+      <span *ngIf="firstName.touched && firstName.errors?.required">Firstname is required</span>
+    </div>
 
+    <div>
+      <label for="inputSurname">Surname:</label>
+      <input type="text" [(ngModel)]="newContact.surname" name="surname" id="inputSurname"
+             required pattern="[a-zA-Z]*" #surname="ngModel" class="form-control">
+      <span *ngIf="surname.touched && surname.invalid">*</span>
+      <span *ngIf="surname.touched && surname.errors?.required">Surname is required</span>
+      <span *ngIf="surname.touched && surname.errors?.pattern">Invalid surname</span>
+    </div>
+    <div>
+      <label for="inputEmail">E-mail address:</label>
+      <input type="email" [(ngModel)]="newContact.email" name="email" id="inputEmail"
+             class="form-control" pattern="^.+@.+\.[a-zA-Z]+$" required #email="ngModel">
+      <span *ngIf="email.touched && email.invalid">*</span>
+      <span *ngIf="email.touched && email.errors?.required">Email is required</span>
+      <span *ngIf="email.touched && email.errors?.pattern">Invalid email</span>
+    </div>
     <button [disabled]="myform.invalid" class="btn btn-primary">Add</button>
+  </form>
+  <!--Model driven form ReactiveFormsModule-->
+  <form [formGroup]="addContactForm" (ngSubmit)="addContact2()">
+    <h2>Model-driven form (ReactiveFormsModule)</h2>
+    <div>
+      <label for="inputFirstName">Firstname:</label>
+      <input type="text" formControlName="firstName" id="inputFirstNameR" class="form-control">
+      <small class="text-danger" *ngIf="addContactForm.get('firstName').touched &&
+      addContactForm.get('firstName').invalid">*
+      </small>
+      <small class="text-danger" *ngIf="addContactForm.get('firstName').touched &&
+      addContactForm.get('firstName').errors?.pattern">Please enter valid firstname
+      </small>
+      <small class="text-danger" *ngIf="addContactForm.get('firstName').touched &&
+      addContactForm.get('firstName').errors?.required">Firstname is required
+      </small>
+    </div>
+    <div>
+      <label for="inputSurname">Surname:</label>
+      <input type="text" formControlName="surname" id="inputSurnameR" class="form-control">
+      <small class="text-danger" *ngIf="addContactForm.get('firstName').touched &&
+      addContactForm.get('surname').invalid">*
+      </small>
+      <small class="text-danger" *ngIf="addContactForm.get('surname').touched &&
+      addContactForm.get('surname').errors?.pattern">Please enter valid surname
+      </small>
+      <small class="text-danger" *ngIf="addContactForm.get('surname').touched &&
+      addContactForm.get('surname').errors?.required">Surname is required
+      </small>
+    </div>
+    <div>
+      <label for="inputEmail">E-mail address:</label>
+      <input type="email" formControlName="email" id="inputEmailR" class="form-control">
+      <small *ngIf="addContactForm.get('email').invalid && addContactForm.get('email').touched" class="text-danger">*
+      </small>
+      <small class="text-danger" *ngIf="addContactForm.get('email').touched &&
+      addContactForm.get('email').errors?.email">Please enter valid email
+      </small>
+      <small class="text-danger" *ngIf="addContactForm.get('email').touched &&
+      addContactForm.get('email').errors?.required">Email is required
+      </small>
+
+    </div>
+    <button class="btn btn-primary">Add</button>
   </form>
 </div>
 
@@ -52,4 +113,3 @@
   </tbody>
 </table>
 
-<p>{{bedrag | currency}}</p>

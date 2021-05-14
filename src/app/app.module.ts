@@ -1,6 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {AppComponent} from './app.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ContactFormComponent} from './contact-form/contact-form.component';
 import {NgModule} from "@angular/core";
 import {ContactNamePipe} from "./pipes/contact-name.pipe";
@@ -11,7 +11,7 @@ import {ContactNamePipe} from "./pipes/contact-name.pipe";
     ContactNamePipe
   ],
   imports: [
-    BrowserModule, FormsModule
+    BrowserModule, FormsModule, ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
