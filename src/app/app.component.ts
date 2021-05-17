@@ -7,6 +7,14 @@ import {Contact} from './models/contact';
 })
 
 export class AppComponent {
+  contacts: Contact[] = [
+    {firstName: 'Sam', surname: 'Smith', email: 'sam.smith@music.com'},
+    {firstName: 'Frank', surname: 'Muscles', email: 'frank@muscles.com'},
+    {firstName: 'Eddy', surname: 'Valentino', email: 'eddy@valfam.co.uk'}
+  ];
 
+  addContact(newContact: Contact) {
+    this.contacts.push(newContact);
+  }
 
 }

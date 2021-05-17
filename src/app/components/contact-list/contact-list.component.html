@@ -1,0 +1,38 @@
+<h2>The contacts</h2>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>E-mail</th>
+    <th>Actions</th>
+  </tr>
+
+  <tr *ngFor="let c of contacts" app-contact-row [contact]="c"></tr>
+  <!--<tr *ngFor="let contact of contacts">
+    <td>
+      <div *ngIf="!contact.editing">{{contact | contactName}}</div>
+      <div *ngIf="contact.editing">
+        <input type="text"
+               [(ngModel)]="contact.firstName">
+        <input type="text"
+               [(ngModel)]="contact.surname">
+      </div>
+    </td>
+    <td>
+      <div *ngIf="!contact.editing">{{contact.email}}</div>
+      <div *ngIf="contact.editing">
+        <input type="text"
+               [(ngModel)]="contact.email">
+      </div>
+    </td>
+    <td>
+      <div>
+        <button [disabled]="contact.editing == true" (click)="editContact(contact)">Edit</button>
+        <button (click)="deleteContact(contact)">Delete</button>
+        <button [disabled]="contact.editing == false" (click)="saveContact(contact)">Save</button>
+      </div>
+
+    </td>
+  </tr>-->
+
+</table>
+

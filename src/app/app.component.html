@@ -1,1 +1,5 @@
-<app-contact-form></app-contact-form>
+<h1>Datepicker: Contacts</h1>
+
+<contact-form (add)="addContact($event)"></contact-form>
+
+<contact-list [contacts]="contacts"></contact-list>
